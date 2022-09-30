@@ -69,7 +69,7 @@ const calculateNext = (state) => {
   const { bottomLeft, topRight } = corners(state);
   let result = [];
   for (let y = topRight[1] + 1; y >= bottomLeft[1] - 1; y--) {
-    for (let x = bottom.Left[0] - 1; x <= topRight[0] + 1; x++) {
+    for (let x = bottomLeft[0] - 1; x <= topRight[0] + 1; x++) {
       result = result.concat(willBeAlive([x,y], state) ? [[x, y]] : []);
     }
   }
@@ -84,7 +84,10 @@ const iterate = (state, iterations) => {
   return states;
 };
 
-const main = (pattern, iterations) => {};
+const main = (pattern, iterations) => {
+  const results = iterate(startPatterns[pattern], iterations);
+  results.forEach(r => console.log(printCells(r)));
+};
 
 const startPatterns = {
     rpentomino: [
